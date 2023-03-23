@@ -17,9 +17,9 @@
 
 ### UX Designer 🎨
 
-.... : [LinkedIn](#) | [Portfolio](#)
+Angie Becerra Contreras: [LinkedIn](#) | [Portfolio](#)
 
-.... : [LinkedIn](#) | [Portfolio](#)
+Cecilia Ibañez : [LinkedIn](#) | [Portfolio](#)
 
 ### Front - End 🚀
 
