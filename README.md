@@ -1,5 +1,9 @@
 <h1 align = "center">c10-37-t-mern</h1>
-<p align = "center">Proyecto Equipo 39 - Cohorte 10 No Country</p>
+<p align = "center">Proyecto Equipo 37 - Cohorte 10 No Country</p>
+
+#### Inline code
+
+`$ npm install marked`
 
 ## Equipo
 
@@ -29,4 +33,4 @@ Ilan Néstor Angeles Rodriguez : [LinkedIn](https://www.linkedin.com/in/ilannest
 
 Leonardo Martin Carrizo: [LinkedIn](#) | [GitHub](#) | [Portfolio](#)
 
-.... : [LinkedIn](#) | [GitHub](#) | [Portfolio](#)
+Facundo Bobarini : [LinkedIn](#) | [GitHub](#) | [Portfolio](#)
