@@ -1,9 +1,7 @@
 const userSchema=require('../models/User')
+const User=require('../models/User')
 
 const postUser = async(req,res)=>{
-    // const {name,email,adress}=req.body;
-    // console.log(name);
-    console.log(req.body);
     try {
       const user=userSchema(req.body);
       await user.save();
@@ -13,4 +11,23 @@ const postUser = async(req,res)=>{
     }
 }
 
-module.exports={postUser}
+const getUser=async(req,res)=>{
+    try {
+        const users= await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(404).json({"message":error.message})
+    }
+}
+
+const getUserById=async(req,res)=>{
+    try {
+      const  {id}=req.params;
+        const users=await User.findById(id);
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(404).json({"message":error.message});
+    }
+}
+
+module.exports={postUser,getUser,getUserById}
