@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const petSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
     requered: true,
   },
   age: {
@@ -16,21 +15,18 @@ const petSchema = new mongoose.Schema({
   },
   medicalHistory: {
     type: String,
-    unique: true,
-    require: true,
+    requered: true,
   },
   photo: {
     type: String,
-    unique: true,
   },
   attributes: {
     type: String,
-    requered: true,
   },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    type: String,
+    requered: true,
   },
 });
-
-module.exports = mongoose.model("pet", petSchema);
+mongoose.connect(process.env.MONGODBURL);
+module.exports = mongoose.model("pets", petSchema);
