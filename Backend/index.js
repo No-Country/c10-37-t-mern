@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const petRouter = require("./src/routes/pet.routes.js");
 
 async function bootstrap() {
   try {
@@ -13,6 +14,9 @@ async function bootstrap() {
     //middleware
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+
+    //endpoints
+    app.use("/api/pet", petRouter);
   } catch (error) {
     console.error(error);
   }
