@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const petRouter = require("./src/routes/pet.routes.js");
+const dbConnection = require("./src/db/dbConnection.js");
 
 async function bootstrap() {
   try {
