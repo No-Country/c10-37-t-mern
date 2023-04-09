@@ -28,5 +28,5 @@ const petSchema = new mongoose.Schema({
     requered: true,
   },
 });
-mongoose.connect(process.env.MONGODBURL);
+
 module.exports = mongoose.model("pets", petSchema);
