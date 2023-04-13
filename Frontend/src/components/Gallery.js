@@ -24,15 +24,15 @@ const Gallery = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => response.json())
-      .then((data) => setPets(data))
+      .then((data) => setPets(data.data.docs))
       .catch((error) => console.error(error));
   }, []);
 
   return (
     <GalleryContainer>
-      {pets.map((pet) => (
-        <Image key={pet.id} src={pet.image} alt={pet.name} />
-      ))}
+     {pets.map((pet) => (
+  <Image key={pet.id} src={pet.photo} alt={pet.name} />
+))}
     </GalleryContainer>
   );
 };

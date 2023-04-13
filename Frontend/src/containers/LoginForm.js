@@ -114,8 +114,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    fetch("http://localhost:5000/api/user/auth", {
+    fetch("http://localhost:5000/users/auth", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
     })
