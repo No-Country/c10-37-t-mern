@@ -1,11 +1,13 @@
 const express = require("express");
 require("dotenv").config();
 const petRouter = require("./src/routes/pet.routes.js");
+const userRouter=require('./src/routes/users.js')
 const dbConnection = require("./src/db/dbConnection.js");
 
 async function bootstrap() {
   try {
     //backend connection
+    
     const app = express();
     app.set("port", process.env.PORT || 5500);
     const server = app.listen(app.get("port"), () =>
@@ -18,6 +20,7 @@ async function bootstrap() {
 
     //endpoints
     app.use("/api/pet", petRouter);
+    app.use("/users", userRouter);
   } catch (error) {
     console.error(error);
   }

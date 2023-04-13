@@ -2,6 +2,7 @@ const userSchema=require('../models/User')
 const User=require('../models/User')
 
 const postUser = async(req,res)=>{
+    console.log('entro');
     try {
       const user=userSchema(req.body);
       await user.save();
