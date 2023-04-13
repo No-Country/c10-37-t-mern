@@ -3,14 +3,14 @@ const {postUser,getUser,getUserById}=require('../controllers/users')
 const router=express.Router();
 // const userSchema=require('../models/User')
 
-router.post('/users',postUser)
+router.post('/',postUser)
 
-router.get('/users', getUser)
+router.get('/', getUser)
 
 
-router.get('/users/:id',getUserById)
+router.get('/:id',getUserById)
 
-router.put('/users/:id',(req,res)=>{
+router.put('/:id',(req,res)=>{
     res.send('update by id')
 })
 
