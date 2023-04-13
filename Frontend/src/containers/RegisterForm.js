@@ -85,7 +85,7 @@ const RegisterForm = () => {
   const [phonenumber, setPhonenumber] = useState("");
   
   const handleRegister = () => {
-    fetch("http://localhost:5000/api/user/auth", {
+    fetch("http://localhost:5000/users", {  
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password, name, lastname, adress, email, phonenumber })

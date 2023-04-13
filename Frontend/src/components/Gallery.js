@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const GalleryContainer = styled.div`
@@ -10,21 +11,27 @@ const GalleryContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Gallery = () => {
-    const images = [
-        { id: 1, src: 'https://via.placeholder.com/400x400' },
-        { id: 2, src: 'https://via.placeholder.com/200x300' },
-        { id: 3, src: 'https://via.placeholder.com/300x200' },
-        { id: 4, src: 'https://via.placeholder.com/500x500' },
-      ];
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/pet/", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((data) => setPets(data))
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <GalleryContainer>
-      {images.map(image => (
-        <Image key={image.id} src={image.src} alt={`Image ${image.id}`} />
+      {pets.map((pet) => (
+        <Image key={pet.id} src={pet.image} alt={pet.name} />
       ))}
     </GalleryContainer>
   );
