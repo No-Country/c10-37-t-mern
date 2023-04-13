@@ -20,4 +20,19 @@ async function getPets(req, res) {
   }
 }
 
-module.exports = { addPet, getPets };
+async function deletePet(req, res) {
+  try {
+    const pet = await petCollection.findByIdAndDelete(`${req.params.id}`);
+    return pet
+      ? res
+          .status(200)
+          .json({ status: "success", message: "Se elimino mascota" })
+      : res
+          .status(404)
+          .json({ status: "error", message: "No se encontro la mascota!" });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+module.exports = { addPet, getPets, deletePet };
