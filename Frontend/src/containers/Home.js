@@ -1,3 +1,4 @@
+import NavBar from "../components/NavBar";
 import ToggleSwitch from "../components/ToggleSwitch";
 import Options from "../components/Options";
 import Gallery from '../components/Gallery';
@@ -12,11 +13,14 @@ const Container = styled.div`
 
 const Home = () => {
   return (
+   <>
+   <NavBar/>
   <Container>
       <ToggleSwitch />
       <Options/>
-      <Gallery/>
   </Container>
+  <Gallery/>
+  </> 
   );
 };
 

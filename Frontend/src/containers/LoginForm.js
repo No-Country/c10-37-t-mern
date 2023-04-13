@@ -98,7 +98,7 @@ const Button = styled.button`
   }
 `;
 
-const RegisterLink = styled.a`
+const RegisterLink = styled.span`
   font-size: 14px;
   margin-top: 20px;
   color: #008cba;
@@ -117,7 +117,7 @@ const LoginForm = () => {
     fetch("http://localhost:5000/api/user/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email, password: password })
+      body: JSON.stringify({ email, password })
     })
       .then(response => {
         const res = response.json();
@@ -163,20 +163,20 @@ const LoginForm = () => {
       <Title>¡Bienvenido a <AdoptText>Adopt<AdoptTitle>Ar</AdoptTitle></AdoptText>!</Title>
         <Text>Inicia sesión con:</Text>
         <LogoContainer>
-          <a href="https://accounts.google.com/o/oauth2/auth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email">
+          <Link to={"https://accounts.google.com/o/oauth2/auth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email"} >
             <Logo
               src="https://cdn.icon-icons.com/icons2/2631/PNG/512/gmail_new_logo_icon_159149.png"
               alt="Gmail"
               onClick={handleGmailClick}
             />
-          </a>
-          <a href="https://www.facebook.com/v12.0/dialog/oauth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=email">
+          </Link>
+          <Link to={"https://www.facebook.com/v12.0/dialog/oauth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=email"}>
             <Logo
               src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-facebook-2019-circle-512.png"
               alt="Facebook"
               onClick={handleFacebookClick}
             />
-          </a>
+          </Link>
         </LogoContainer>
         <Divider>
           <span>O</span>
