@@ -3,6 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 const petRouter = require("./src/routes/pet.routes.js");
 const userRouter = require("./src/routes/users.js");
+const cookieParser = require("cookie-parser");
 const dbConnection = require("./src/db/dbConnection.js");
 
 async function bootstrap() {
@@ -17,9 +18,10 @@ async function bootstrap() {
 
     //middleware
     app.use(express.json());
+    app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.urlencoded({ extended: true }));
-    app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+    app.use(cors({ origin: "*", credentials: true }));
 
     //endpoints
     app.use("/api/pet", petRouter);
