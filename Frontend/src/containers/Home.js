@@ -16,7 +16,7 @@ const Home = () => {
    <>
    <NavBar/>
   <Container>
-      <ToggleSwitch />
+      <ToggleSwitch/>
       <Options/>
   </Container>
   <Gallery/>

@@ -15,7 +15,7 @@ const AdoptTitle = styled.span`
 
 const NavAdoptarLogo = () => {
     return (
-        <Link to={"/Home"} style={{ textDecoration: 'none' }}><AdoptText>Adopt<AdoptTitle>ar</AdoptTitle></AdoptText></Link>
+        <Link to={"/home"} style={{ textDecoration: 'none' }}><AdoptText>Adopt<AdoptTitle>ar</AdoptTitle></AdoptText></Link>
     );
   };
   

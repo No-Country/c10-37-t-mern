@@ -46,9 +46,6 @@ const NavProfileCircle = () => {
             <div />
             {isProfileMenuOpen && (
               <ProfileMenuWrapper>
-                <ProfileMenuItem>Mi cuenta</ProfileMenuItem>
-                <ProfileMenuItem>Configuración</ProfileMenuItem>
-                <ProfileMenuItem>Ayuda</ProfileMenuItem>
                 <ProfileMenuItem>Salir</ProfileMenuItem>
               </ProfileMenuWrapper>
             )}

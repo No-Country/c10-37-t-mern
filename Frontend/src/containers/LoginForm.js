@@ -41,40 +41,6 @@ const Text = styled.p`
   margin-bottom: 20px;
 `;
 
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const Logo = styled.img`
-  width: 30px;
-  margin: 0 10px;
-`;
-
-const Divider = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-
-  &::before,
-  &::after {
-    content: "";
-    flex-grow: 1;
-    height: 1px;
-    background-color: #ccc;
-    margin: 0 10px;
-  }
-
-  span {
-    font-size: 14px;
-    color: #ccc;
-    text-transform: uppercase;
-  }
-`;
-
 const Input = styled.input`
   width: 100%;
   padding: 10px;
@@ -109,9 +75,15 @@ const RegisterLink = styled.span`
   }
 `;
 
+const ErrorText = styled.p`
+  color: red;
+  margin-bottom: 10px;
+`;
+
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const handleLogin = () => {
     fetch("http://localhost:5000/users/auth", {
@@ -126,66 +98,28 @@ const LoginForm = () => {
       })
       .then(response => {
         console.log(response);
+        if (response.token) {
+          window.location.href = "/home";
+        } else {
+          setError("Usuario y/o contraseña incorrectos");
+        }
       })
       .catch(error => {
         console.error(error);
+        setError("Usuario y/o contraseña incorrectos");
       });
-  };
-  
-  const handleGmailClick = (e) => {
-    e.preventDefault();
-    const width = 600;
-    const height = 600;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-    window.open(
-      e.target.parentElement.href,
-      "popup",
-      `width=${width},height=${height},left=${left},top=${top}`
-    );
-  };
-
-  const handleFacebookClick = (e) => {
-    e.preventDefault();
-    const width = 600;
-    const height = 600;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-    window.open(
-      e.target.parentElement.href,
-      "popup",
-      `width=${width},height=${height},left=${left},top=${top}`
-    );
   };
 
   return (
     <Card>
       <Container>
       <Title>¡Bienvenido a <AdoptText>Adopt<AdoptTitle>Ar</AdoptTitle></AdoptText>!</Title>
-        <Text>Inicia sesión con:</Text>
-        <LogoContainer>
-          <Link to={"https://accounts.google.com/o/oauth2/auth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email"} >
-            <Logo
-              src="https://cdn.icon-icons.com/icons2/2631/PNG/512/gmail_new_logo_icon_159149.png"
-              alt="Gmail"
-              onClick={handleGmailClick}
-            />
-          </Link>
-          <Link to={"https://www.facebook.com/v12.0/dialog/oauth?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=email"}>
-            <Logo
-              src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-facebook-2019-circle-512.png"
-              alt="Facebook"
-              onClick={handleFacebookClick}
-            />
-          </Link>
-        </LogoContainer>
-        <Divider>
-          <span>O</span>
-        </Divider>
+        <Text>Inicia sesión:</Text>
+        {error && <ErrorText>{error}</ErrorText>}
         <Input type="text" placeholder="Correo electrónico" value={email} onChange={e => setEmail(e.target.value)}/>
         <Input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)}/>
         <Button onClick={() => handleLogin(email, password)}>Continuar</Button>
-        <Link to={'/Register'}><RegisterLink>¿No tienes una cuenta? Regístrate</RegisterLink></Link>
+        <Link to={'/Register'}><RegisterLink>¿No tienes una cuenta?</RegisterLink></Link>
       </Container>
     </Card>
   );

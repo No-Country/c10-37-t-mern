@@ -83,39 +83,98 @@ const RegisterForm = () => {
   const [adress, setAdress] = useState("");
   const [email, setEmail] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
-  
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const handleRegister = () => {
-    fetch("http://localhost:5000/users", {  
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password, name, lastname, adress, email, phonenumber })
+      body: JSON.stringify({
+        username,
+        password,
+        name,
+        lastname,
+        adress,
+        email,
+        phonenumber,
+      }),
     })
-      .then(response => {
+      .then((response) => {
         const res = response.json();
         return res;
       })
-      .then(response => {
+      .then((response) => {
         console.log(response);
+        setFormSubmitted(true);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
- 
+
+  if (formSubmitted) {
+    window.location.href = "/";
+  }
+
   return (
     <Card>
       <Container>
-        <Title>¡Bienvenido a <AdoptText>Adopt<AdoptTitle>Ar</AdoptTitle></AdoptText>!</Title>
+        <Title>
+          ¡Bienvenido a <AdoptText>Adopt<AdoptTitle>Ar</AdoptTitle></AdoptText>!
+        </Title>
         <Text>Regístrate:</Text>
-        <Input type="text" placeholder="Nombre de usuario*" value={username} onChange={e => setUsername(e.target.value)}/>
-        <Input type="password" placeholder="Contraseña*" value={password} onChange={e => setPassword(e.target.value)}/>
-        <Input type="text" placeholder="Nombre*" value={name} onChange={e => setName(e.target.value)}/>
-        <Input type="text" placeholder="Apellido*" value={lastname} onChange={e => setLastname(e.target.value)}/>
-        <Input type="text" placeholder="Dirección*" value={adress} onChange={e => setAdress(e.target.value)}/>
-        <Input type="email" placeholder="E-mail*" value={email} onChange={e => setEmail(e.target.value)}/>
-        <Input type="text" placeholder="Número de teléfono" value={phonenumber} onChange={e => setPhonenumber(e.target.value)}/>
-        <Button onClick={() => handleRegister(username, password, name, lastname, adress, email, phonenumber)}>Registrarse</Button>
-       <Link to={'/'}><LoginLink>¿Ya tienes una cuenta? ¡Inicia sesión!</LoginLink></Link>
+        <Input
+          type="text"
+          placeholder="Nombre de usuario*"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="Contraseña*"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Nombre*"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Apellido*"
+          value={lastname}
+          onChange={(e) => setLastname(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Dirección*"
+          value={adress}
+          onChange={(e) => setAdress(e.target.value)}
+        />
+        <Input
+          type="email"
+          placeholder="E-mail*"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Número de teléfono"
+          value={phonenumber}
+          onChange={(e) => setPhonenumber(e.target.value)}
+        />
+        <Button
+          onClick={() =>
+            handleRegister(username, password, name, lastname, adress, email, phonenumber)
+          }
+        >
+          Registrarse
+        </Button>
+        <Link to={"/"}>
+          <LoginLink>¿Ya tienes una cuenta? ¡Inicia sesión!</LoginLink>
+        </Link>
       </Container>
     </Card>
   );
