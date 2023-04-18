@@ -9,18 +9,17 @@ const SwitchContainer = styled.div`
   background-color: white;
   position: relative;
   cursor: pointer;
-  border: 2px solid ${({ on, violet, orange }) => {
-    if (violet && on) return '#8B00FF'; 
-    if (orange && !on) return '#FF8C00'; 
+  border: 2px solid ${({ checked, violet, orange }) => {
+    if (violet && checked) return '#8B00FF'; 
+    if (orange && !checked) return '#FF8C00'; 
     return '#C4C4C4'; 
   }};
 `;
 
-
 const SwitchText = styled.span`
   font-size: 18px;
   font-weight: 600;
-  color: ${({ on }) => on ? 'black' : 'white'};
+  color: ${({ checked }) => checked ? 'black' : 'white'};
   text-align: center;
   flex: 1;
   display: flex;
@@ -33,36 +32,36 @@ const SwitchCircle = styled.div`
   height: 40px;
   width: 140px;
   border-radius: 16px;
-  background-color: ${({ on, violet, orange }) => {
-    if (violet && on) return '#8B00FF'; 
-    if (orange && !on) return '#FF8C00';
+  background-color: ${({ checked, violet, orange }) => {
+    if (violet && checked) return '#8B00FF'; 
+    if (orange && !checked) return '#FF8C00';
     return 'white';
   }};
   position: absolute;
   top: 0;
-  left: ${({ on }) => on ? 'calc(100% - 140px)' : '0'};
+  left: ${({ checked }) => checked ? 'calc(100% - 140px)' : '0'};
   transition: all 0.3s;
   z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: ${({ on }) => on ? 'flex-end' : 'flex-start'};
+  justify-content: ${({ checked }) => checked ? 'flex-end' : 'flex-start'};
   padding: 0 10px;
   box-sizing: border-box;
 `;
 
-
-const ToggleSwitch = () => {
-  const [on, setOn] = useState(false);
+const ToggleSwitch = ({ checked, onClick }) => {
+  const [isActive, setIsActive] = useState(checked);
 
   const handleClick = () => {
-    setOn(!on);
+    setIsActive(!isActive);
+    onClick();
   };
 
   return (
-    <SwitchContainer on={on} violet={on} orange={!on} onClick={handleClick}>
-      <SwitchText on={on}>Adoptar</SwitchText>
-      <SwitchCircle on={on} violet={on} orange={!on} />
-      <SwitchText on={!on}>Dar en adopción</SwitchText>
+    <SwitchContainer checked={isActive} violet={isActive} orange={!isActive} onClick={handleClick}>
+      <SwitchText checked={isActive}>Adoptar</SwitchText>
+      <SwitchCircle checked={isActive} violet={isActive} orange={!isActive} />
+      <SwitchText checked={!isActive}>Dar en adopción</SwitchText>
     </SwitchContainer>
   );
 };

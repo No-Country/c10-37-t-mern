@@ -3,6 +3,7 @@ import ToggleSwitch from "../components/ToggleSwitch";
 import Options from "../components/Options";
 import Gallery from '../components/Gallery';
 import styled from "styled-components";
+import { useState } from "react";
 
 
 const Container = styled.div`
@@ -12,15 +13,21 @@ const Container = styled.div`
 `;
 
 const Home = () => {
+  const [toggleState, setToggleState] = useState(false);
+
+  const handleToggle = () => {
+    setToggleState(!toggleState);
+  }
+
   return (
    <>
    <NavBar/>
-  <Container>
-      <ToggleSwitch/>
-      <Options/>
-  </Container>
-  <Gallery/>
-  </> 
+    <Container>
+    <ToggleSwitch checked={toggleState} onClick={handleToggle} />
+      <Options />
+      {toggleState ? <Gallery /> : null}
+    </Container>
+  </>
   );
 };
 

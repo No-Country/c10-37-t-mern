@@ -30,9 +30,9 @@ const Gallery = () => {
 
   return (
     <GalleryContainer>
-     {pets.map((pet) => (
-  <Image key={pet.id} src={pet.photo} alt={pet.name} />
-))}
+      {pets.map((pet) => (
+        <Image key={pet.id} src={pet.photo} alt={pet.name} />
+      ))}
     </GalleryContainer>
   );
 };
