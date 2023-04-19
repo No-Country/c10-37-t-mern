@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import LogoutButton from './LogoutButton';
 
 const ProfileCircle = styled.div`
   display: flex;
@@ -18,20 +19,11 @@ const ProfileMenuWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 100%;
-  width: 200px;
+  width: 100px;
   background-color: #FFFFFF;
   border-radius: 10px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-`;
-
-const ProfileMenuItem = styled.div`
-  padding: 10px;
-  cursor: pointer;
-  &:hover {
-    background-color: #F5F5F5;
-  }
-  border-radius: 10px;
+  z-index: 999;
 `;
 
 const NavProfileCircle = () => {
@@ -46,7 +38,7 @@ const NavProfileCircle = () => {
             <div />
             {isProfileMenuOpen && (
               <ProfileMenuWrapper>
-                <ProfileMenuItem>Salir</ProfileMenuItem>
+                <LogoutButton/>
               </ProfileMenuWrapper>
             )}
           </ProfileCircle>

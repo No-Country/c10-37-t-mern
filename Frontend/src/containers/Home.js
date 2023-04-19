@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const Home = () => {
-  const [toggleState, setToggleState] = useState(false);
+  const [toggleState, setToggleState] = useState(true);
 
   const handleToggle = () => {
     setToggleState(!toggleState);
